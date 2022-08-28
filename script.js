@@ -5,24 +5,30 @@ function getNums() {
     var bday = document.getElementById("birthday").value.match(/\d/g)
     var full=fname+mname+lname
     var list=full.split('')
+   console.log(full)
     if(bday!==null){
     var date=bday.map(Number);
     var dtot=date.reduce(add, 0)
     if(dtot>21){
-    arr=Array.from(String(Lnum), Number)
-    Lnum=arr.reduce(add, 0)
+    console.log(dtot)
+    Lnum=dtot.toString().split('').map(Number).reduce((a, b) => a + b, 0)
     }else if(dtot<=21){
         Lnum=dtot
     }}
-    else{var Lnum="Please fill in your birthday"}
-
-    console.log(list)
-    console.log(date)
-    //document.getElementById("capName").innerHTML = [fname+" "+lname];
+    else if(bday==null){var Lnum="Please fill in your birthday"
+    }
     var numList=[]
     var perList=[]
+    if(!full){
+        console.log('no name')
+        Nnum='Please fill in your name.'
+        Cnum='Please fill in your name.'
+        Pnum='Please fill in your name.'
+        Pnum='Please fill in your name.'
+    }
+    else if(full){
     for (var i = 0; i < list.length; i++) {  
-    if(list[i]=="A"||list[i]=="J"||list[i]=="S")
+        if(list[i]=="A"||list[i]=="J"||list[i]=="S")
     {
         if(list[i]=="J"||list[i]=="S")
     {
@@ -77,12 +83,10 @@ function getNums() {
         perList.push(9)
     }
         numList.push(9)
-    }  
-     }
-     console.log(numList) 
-     console.log(perList)
-    
-    var Nnum=oneDigit(numList.reduce(add, 0))//total=(numList.reduce(add, 0))
+    } 
+     
+    }
+    var Nnum=oneDigit(numList.reduce(add, 0))
     var Pnum=oneDigit(perList.reduce(add, 0))
     var Cnum=compound(numList.reduce(add, 0))
     //
@@ -95,15 +99,12 @@ function getNums() {
         Dnum=Nnum
     }
 
-console.log(Dnum)
-    //
+} 
     
-
     document.getElementById("nameNum").innerHTML = [Nnum];
     document.getElementById("compNum").innerHTML = [Cnum];
     document.getElementById("persNum").innerHTML = [Pnum];
     document.getElementById("lifeNum").innerHTML = [Lnum]
-
 
     }
 
